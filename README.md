@@ -12,7 +12,6 @@ A simple Node.js application with automated CI/CD pipeline using Docker and GitH
 - [Setup Instructions](#setup-instructions)
 - [CI/CD Pipeline](#cicd-pipeline)
 - [Usage](#usage)
-- [Contributing](#contributing)
 - [License](#license)
 
 ---
@@ -40,13 +39,21 @@ A simple Node.js application with automated CI/CD pipeline using Docker and GitH
 
 ## Project Structure
 node-windows-github-action-cicd/
+
 ├── .github/
+
 │ └── workflows/
+
 │ └── deploy.yml
+
 ├── app.js
+
 ├── package.json
+
 ├── Dockerfile
+
 ├── .gitignore
+
 └── README.md
 
 ---
@@ -54,20 +61,20 @@ node-windows-github-action-cicd/
 ## Setup Instructions
 
 1. Clone the repository:
-- *git clone https:*//github.com/TrendTactician/node-windows-github-action-cicd.git
+- `git clone https://github.com/TrendTactician/node-windows-github-action-cicd.git`
 
 
 2. Install dependencies:
-- npm install
+- `npm install`
 
 
 3. Build Docker image:
-- docker build -t node-app .
+- `docker build -t node-app .`
 
 
 4. Run Docker container:
-- docker run -d --name node-app-container -p 3000:3000 node-app
-(Please note here we have specified the container name so when we make changes it stop old container before creating and deploying new container)
+- `docker run -d --name node-app-container -p 3000:3000 node-app`
+*(Please note here we have specified the container name so when we make changes it stop old container before creating and deploying new container)*
 
 
 5. Access your app at `http://localhost:3000`.
