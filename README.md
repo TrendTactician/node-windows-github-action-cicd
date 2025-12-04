@@ -55,8 +55,6 @@ node-windows-github-action-cicd/
 
 ├── Dockerfile
 
-├── .gitignore
-
 └── README.md
 
 
