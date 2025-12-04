@@ -2,6 +2,17 @@
 const request = require('supertest');
 const app = require('../app');
 
+// Keep reference to server
+let server;
+
+beforeAll(() => {
+  server = app.listen(); // Or your app.listen call
+});
+
+afterAll((done) => {
+  server.close(done);
+});
+
 describe('Node CI/CD app', () => {
   it('GET / should return message and version', async () => {
     const res = await request(app).get('/');
