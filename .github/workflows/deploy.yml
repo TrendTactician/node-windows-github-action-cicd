@@ -15,19 +15,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Copy to WSL native location
-        run: |
-          mkdir -p /home/$USER/work
-          cp -r . /home/$USER/work/Node-Windows-Github-Action-CICD
-          cd /home/$USER/work/Node-Windows-Github-Action-CICD
-          npm test
-
-      - name: Install dependencies
-        run: npm install
-
       - name: Run Jest in Docker
         run: |
           docker run --rm -v "$(pwd)":/app -w /app node:18-alpine npm test
+
+      - name: Install dependencies
+        run: npm install
 
       - name: Build Docker image with version tag
         run: |
