@@ -4,13 +4,15 @@ const app = require('../app');
 
 let server;
 
-beforeAll(async () => {
-  server = app.listen(); // Start the server
+beforeAll((done) => {
+  server = app.listen(() => {
+    // Ensure server starts before running tests
+    done();
+  });
 });
 
 afterAll((done) => {
-  server.close(done); // Close server after all tests
-  done(); // Explicitly ensure Jest exits
+  server.close(done);
 });
 
 describe('Node CI/CD app', () => {
@@ -27,3 +29,4 @@ describe('Node CI/CD app', () => {
     expect(res.body.status).toBe('ok');
   });
 });
+
