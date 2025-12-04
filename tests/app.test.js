@@ -6,7 +6,6 @@ let server;
 
 beforeAll((done) => {
   server = app.listen(() => {
-    // Ensure server starts before running tests
     done();
   });
 });
@@ -29,4 +28,3 @@ describe('Node CI/CD app', () => {
     expect(res.body.status).toBe('ok');
   });
 });
-
