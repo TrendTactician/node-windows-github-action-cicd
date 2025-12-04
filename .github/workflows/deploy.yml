@@ -17,7 +17,11 @@ jobs:
 
       - name: Run Jest in Docker
         run: |
-          docker run --rm -v "$(pwd)":/app -w /app node:18-alpine npm test
+          docker run --rm \
+            -v "$(pwd)":/app \
+            -w /app \
+            node:18-alpine \
+            sh -c "npm install && npm test"
 
       - name: Install dependencies
         run: npm install
