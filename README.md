@@ -19,10 +19,12 @@ A simple Node.js application with automated CI/CD pipeline using Docker and GitH
 ## Features
 
 - Node.js Express API for task management.
-- Dockerized application for easy deployment.
+- Dockerised application for easy deployment.
 - Automated CI/CD pipeline with GitHub Actions using a self-hosted runner.
 - Local deployment on a Windows 11 machine using WSL and Docker Desktop.
 - Automated build, test, deploy, and cleanup steps.
+- Jest and Supertest for automated, reliable testing.
+- Versioned container naming and clean deployment process.
 
 ---
 
@@ -38,6 +40,7 @@ A simple Node.js application with automated CI/CD pipeline using Docker and GitH
 ---
 
 ## Project Structure
+
 node-windows-github-action-cicd/
 
 ├── .github/
@@ -56,41 +59,42 @@ node-windows-github-action-cicd/
 
 └── README.md
 
+
 ---
 
 ## Setup Instructions
 
 1. Clone the repository:
-- `git clone https://github.com/TrendTactician/node-windows-github-action-cicd.git`
+`git clone https://github.com/TrendTactician/node-windows-github-action-cicd.git`
 
 
 2. Install dependencies:
-- `npm install`
+`npm install`
 
 
 3. Build Docker image:
-- `docker build -t node-app .`
+docker run -d --name node-app-container -p 3000:3000 node-app
 
-
-4. Run Docker container:
-- `docker run -d --name node-app-container -p 3000:3000 node-app`
-*(Please note here we have specified the container name so when we make changes it stop old container before creating and deploying new container)*
-
+*(Note: Use a fixed container name to ensure the CI/CD workflow can cleanly stop and replace old containers during deployment.)*
 
 5. Access your app at `http://localhost:3000`.
 
 6. Set up GitHub Actions self-hosted runner as described in the [GitHub Actions documentation](https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners).
 
+7. Run tests (optional):
+`npm test`
+
+
 ---
 
 ## CI/CD Pipeline
 
-- **Checkout code**: Pulls your repo code.
-- **Install dependencies**: Runs `npm install`.
-- **Test**: Runs `npm test` (simple echo script for now).
-- **Build Docker**: Builds the Docker image.
-- **Deploy**: Runs the Docker container.
-- **Stop and cleanup**: Stops and removes old containers for clean deployments.
+- **Checkout code:** Pulls your repo code.
+- **Install dependencies:** Runs `npm install`.
+- **Test:** Executes Jest/Supertest unit tests for automated validation.
+- **Build Docker:** Builds the Docker image with latest version.
+- **Deploy:** Runs the Docker container.
+- **Stop and cleanup:** Stops and removes old containers for clean deployments.
 
 ---
 
@@ -112,4 +116,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 - [GitHub Actions Documentation](https://docs.github.com/en/actions)
 - [Docker Documentation](https://docs.docker.com)
-
+- [Jest Documentation](https://jestjs.io/docs/getting-started)
+- [Supertest Documentation](https://github.com/visionmedia/supertest)
