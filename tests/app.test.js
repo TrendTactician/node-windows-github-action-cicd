@@ -2,15 +2,15 @@
 const request = require('supertest');
 const app = require('../app');
 
-// Keep reference to server
 let server;
 
-beforeAll(() => {
-  server = app.listen(); // Or your app.listen call
+beforeAll(async () => {
+  server = app.listen(); // Start the server
 });
 
 afterAll((done) => {
-  server.close(done);
+  server.close(done); // Close server after all tests
+  done(); // Explicitly ensure Jest exits
 });
 
 describe('Node CI/CD app', () => {
